@@ -1,0 +1,10 @@
+#todo-list-page-containter
+  form(ng-submit='addTodo()')
+    input(type='text', ng-model='todo.text', size='30')
+    input(type='submit', value='add')
+    
+  ul#todo-list
+    li(ng-repeat='todo in todos')
+      input(type='checkbox', ng-model='todo.done')
+      span(class='done-{{todo.done}}') {{todo.text}}
+    

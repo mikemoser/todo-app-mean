@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+}
+
+#header {
+  padding: 20px;
+  font-weight: bold;
+  background: #EEE;
+  border-bottom: 1px solid #CCC;
+  text-transform: uppercase;
+}
+

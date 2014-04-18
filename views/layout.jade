@@ -1,0 +1,13 @@
+doctype html
+html(ng-app='todoApp')
+  head      
+    link(rel='stylesheet', href='/css/layout.css')
+    block head
+    
+  body
+    #page-container
+      #header
+        #header-title='Toptal Todo List'
+      block content 
+
+  block scripts

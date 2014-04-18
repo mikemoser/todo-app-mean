@@ -1,0 +1,11 @@
+#login-page-containter
+  form(name='loginForm')
+    div
+      label Username:
+      input(type='text', name='username', required, ng-model="user.username")
+    div
+      label Password:
+      input(type='password', name='password', required, ng-model="user.password")
+    div
+      input(type='submit', value='Log In' ng-disabled='loginForm.$invalid', ng-click='login(user)')
+    div {{errorMessage}}

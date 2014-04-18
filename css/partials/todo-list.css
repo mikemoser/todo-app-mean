@@ -1,0 +1,13 @@
+#todo-list-page-containter {
+  padding: 20px;
+}
+
+#todo-list {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.done-true {
+  text-decoration: line-through;
+}
