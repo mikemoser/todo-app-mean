@@ -1,6 +1,6 @@
-todoApp.controller('loginController', ['$scope', '$location', 'userService', function ($scope, $location, userService) {
+todoApp.controller('loginController', ['$scope', '$location', 'authenticationService', function ($scope, $location, authenticationService) {
   $scope.login = function(user) {
-    userService.login(user)
+    authenticationService.login(user)
     .then(function () {
       $location.url('/');
     }, function (error) {

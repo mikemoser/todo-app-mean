@@ -1,10 +1,13 @@
 #todo-list-page-containter
+  h1#header-text {{user.username}}'s Todos
+  a#logout-link(href='/#/login', ng-click='logout()') log out
+
   form(ng-submit='addTodo()')
-    input(type='text', ng-model='todo.text', size='30')
+    input(type='text', ng-model='todo.description', size='30')
     input(type='submit', value='add')
     
   ul#todo-list
     li(ng-repeat='todo in todos')
-      input(type='checkbox', ng-model='todo.done')
-      span(class='done-{{todo.done}}') {{todo.text}}
+      input(type='checkbox', ng-model='todo.isComplete')
+      span(class='done-{{todo.isComplete}}') {{todo.description}}
     

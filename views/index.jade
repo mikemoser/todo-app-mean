@@ -1,6 +1,7 @@
 extends layout
 block head
   link(rel='stylesheet', href='/css/partials/login.css')
+  link(rel='stylesheet', href='/css/partials/signup.css')
   link(rel='stylesheet', href='/css/partials/todo-list.css')
 
 block content 
@@ -11,6 +12,11 @@ block scripts
   script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js')
   script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js')
   script(src='js/app.js')
+  //Controllers
   script(src='js/controllers/login-controller.js')
+  script(src='js/controllers/signup-controller.js')
   script(src='js/controllers/todo-list-controller.js')
+  // Services
   script(src='js/services/user-service.js')
+  script(src='js/services/todo-service.js')
+  script(src='js/services/authentication-service.js')

@@ -1,0 +1,14 @@
+#signup-page-containter
+  h1 Sign Up
+  form(name='signupForm')
+    div
+      label Username:
+      input(type='text', name='username', required, ng-model="user.username")
+    div
+      label Password:
+      input(type='password', name='password', required, ng-model="user.password")
+    div
+      input(type='submit', value='Signup' ng-disabled='signupForm.$invalid', ng-click='signup(user)')
+    div {{errorMessage}}
+    div
+      a(href='/#/login')='I already have an account'

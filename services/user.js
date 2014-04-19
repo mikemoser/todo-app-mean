@@ -7,14 +7,31 @@
       // TODO: Check hashed password
       Models.User.findOne({ username: username }, function (error, result) {
         if (result)
-          fulfill({ name: 'mike moser' });
+          fulfill(result);
         else
           reject(new Error('Invalid username or password.'));  
       });
     })
   }
 
+  function create(username, password) {
+    return new Promise(function (fulfill, reject) {
+      var user = new Models.User({ 
+        username: username,
+        password: password // TODO: Hash password
+      })
+
+      user.save(function (error) {
+        if (error) 
+          reject(error);
+        else
+          fulfill(user)
+      });
+    });
+  }
+
   module.exports = {
-    login: login
+    login: login,
+    create: create
   }
 })()

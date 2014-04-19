@@ -1,4 +1,5 @@
 #login-page-containter
+  h1 Log In
   form(name='loginForm')
     div
       label Username:
@@ -9,3 +10,5 @@
     div
       input(type='submit', value='Log In' ng-disabled='loginForm.$invalid', ng-click='login(user)')
     div {{errorMessage}}
+    div
+      a(href='/#/signup')='Create an account'

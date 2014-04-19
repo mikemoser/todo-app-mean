@@ -4,12 +4,17 @@
   var express = require('express');
   var app = express();
   var mongoose = require('mongoose');
+  var Routes = require('./routes');
   var Services = require('./services');
 
-  // *** Mongoose setup ***
+  // ----------------------------------------------------------------
+  // MONGOOSE SETUP
+  // ----------------------------------------------------------------
   mongoose.connect('mongodb://127.0.0.1:27017/toptal-todo');
 
-  // *** Express Setup ***  
+  // ----------------------------------------------------------------
+  // EXPRESS SETUP
+  // ----------------------------------------------------------------
   app.set('view engine', 'jade');
   app.use(express.cookieParser());
   app.use(express.session({ secret: 'toptal todo key' }));
@@ -21,11 +26,16 @@
     console.log('Listening on port %d', server.address().port);
   });
 
-  // *** Express Routes ***
+  // ----------------------------------------------------------------
+  // EXPRESS ROUTES
+  // ----------------------------------------------------------------
+
+  // Static Routes
   app.use('/img', express.static(__dirname + '/img'));
   app.use('/css', express.static(__dirname + '/css'));
   app.use('/js', express.static(__dirname + '/js'));
 
+  // Public Routes
   app.get('/', function (req, res) {
     res.render('index');
   });
@@ -35,11 +45,7 @@
     res.render('partials/' + name);
   });
 
-  // User routes
-  app.get('/loggedin', function (req, res) { 
-    res.send(req.isAuthenticated() ? req.user : '0'); 
-  });
-
+  // Authentication Routes
   app.post('/login', passport.authenticate('local'), function (req, res) { 
     res.send(req.user); 
   }); 
@@ -48,8 +54,22 @@
     req.logOut(); 
     res.send(200); 
   });
+  
+  app.get('/loggedin', function (req, res) { 
+    res.send(req.isAuthenticated() ? req.user : null); 
+  });
 
-  // *** Authentication ***
+  // User Routes  
+  app.post('/users', Routes.User.create);
+
+  // Todo Routes
+  app.get('/user/:id/todos', ensureAuthenticated, Routes.Todo.list);
+  app.post('/user/:id/todos', ensureAuthenticated, Routes.Todo.create);
+
+  
+  // ----------------------------------------------------------------
+  // AUTHENTICATION
+  // ----------------------------------------------------------------
   passport.use(new LocalStrategy(
     function(username, password, done) {
       Services.User.login(username, password)
@@ -70,4 +90,9 @@
     // TODO: Deserialize user based on id
     done(null, user);
   });
+
+  function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.send(401)
+  }
 })();
