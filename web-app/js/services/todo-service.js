@@ -1,15 +1,27 @@
 todoApp.factory('todoService', function ($http) {
   return {
-    getTodos: function (userId) {
-      return $http.get('/user/' + userId + '/todos')
+    getTodos: function () {
+      return $http.get('/todos')
       .then(function (results) {
         return results.data;
       });
     },
-    create: function (userId, todo) {
-      return $http.post('/user/' + userId + '/todos', todo)
+    create: function (todo) {
+      return $http.post('/todos', todo)
       .then(function (results) {
         return results.data;
+      });
+    },
+    delete: function (todo) {
+      return $http.delete('/todos/' + todo._id, todo)
+      .then(function () {
+        return;
+      }); 
+    },
+    update: function (todo) {
+      return $http.put('/todos/' + todo._id, todo)
+      .then(function (todo) {
+        return todo;
       });
     }
   }

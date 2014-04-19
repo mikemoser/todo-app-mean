@@ -64,8 +64,10 @@
   app.post('/users', Routes.User.create);
 
   // Todo Routes
-  app.get('/user/:id/todos', ensureAuthenticated, Routes.Todo.list);
-  app.post('/user/:id/todos', ensureAuthenticated, Routes.Todo.create);
+  app.get('/todos', ensureAuthenticated, Routes.Todo.list);
+  app.post('/todos', ensureAuthenticated, Routes.Todo.create);
+  app.delete('/todos/:id', ensureAuthenticated, Routes.Todo.delete);
+  app.put('/todos/:id', ensureAuthenticated, Routes.Todo.update);
 
   
   // ----------------------------------------------------------------

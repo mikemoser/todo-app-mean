@@ -3,12 +3,26 @@ var todoController = todoApp.controller('todoController', ['$scope', 'authentica
   $scope.todos = $route.current.locals.data.todos;
  
   $scope.addTodo = function() {
-    todoService.create($scope.user._id, $scope.todo)
+    todoService.create({ 
+      description: $scope.newTodo.description,
+      user: $scope.user._id
+    })
     .then(function (todo) {
       $scope.todos.push(todo);  
+      $scope.newTodo.description = '';
     });
-    
-    $scope.todo.text = '';
+  };
+
+  $scope.deleteTodo = function(todo) {
+    todoService.delete(todo)
+    .then(function () {
+      var removeIndex = $scope.todos.indexOf(todo);  
+      $scope.todos.splice(removeIndex, 1)
+    });
+  };
+
+  $scope.updateTodo = function(todo) {
+    todoService.update(todo);
   };
 
   $scope.logout = function () {

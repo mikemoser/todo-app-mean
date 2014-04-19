@@ -2,12 +2,12 @@
   var Promise = require('promise');
   var Models = require('../models')
 
-  function create(userId, description) {
+  function create(data) {
     return new Promise(function (fulfill, reject) {
       var todo = new Models.Todo({ 
-        description: description,
-        user: userId
-      })
+        description: data.description,
+        user: data.user
+      });
 
       todo.save(function (error) {
         if (error) 
@@ -29,8 +29,37 @@
     });  
   }
 
+  function remove(todoId) {
+    return new Promise(function (fulfill, reject) {
+      Models.Todo.remove({ _id: todoId}, function (error) {
+        if (error) 
+          reject(error);
+        else
+          fulfill()
+      });
+    });
+  }
+
+  function update(todoId, data) {
+    return new Promise(function (fulfill, reject) {
+      Models.Todo.findById(todoId, function (error, todo) {
+        todo.description = data.description;
+        todo.isComplete = data.isComplete; 
+
+        todo.save(function (error, todo) {
+          if (error) 
+            reject(error);
+          else
+            fulfill(todo)
+        });
+      });
+    });
+  }
+
   module.exports = {
     create: create,
-    getTodosByUserId: getTodosByUserId
+    getTodosByUserId: getTodosByUserId,
+    remove: remove,
+    update: update
   }
 })()

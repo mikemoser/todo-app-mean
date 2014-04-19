@@ -3,11 +3,11 @@
   a#logout-link(href='/#/login', ng-click='logout()') log out
 
   form(ng-submit='addTodo()')
-    input(type='text', ng-model='todo.description', size='30')
+    input(type='text', ng-model='newTodo.description', size='30')
     input(type='submit', value='add')
     
   ul#todo-list
     li(ng-repeat='todo in todos')
-      input(type='checkbox', ng-model='todo.isComplete')
+      input(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
       span(class='done-{{todo.isComplete}}') {{todo.description}}
-    
+      button(type='button', ng-click='deleteTodo(todo)') delete
