@@ -1,14 +1,8 @@
 #login-page-containter
-  h1 Log In
   form(name='loginForm')
-    div
-      label Username:
-      input(type='text', name='username', required, ng-model="user.username")
-    div
-      label Password:
-      input(type='password', name='password', required, ng-model="user.password")
-    div
-      input(type='submit', value='Log In' ng-disabled='loginForm.$invalid', ng-click='login(user)')
-    div {{errorMessage}}
-    div
+    #error-message {{errorMessage}}
+    input(type='text', placeholder='user name', name='username', required, ng-model="user.username")
+    input(type='password', placeholder='password', name='password', required, ng-model="user.password")
+    button.button-bright(type='submit', value='Log In', ng-disabled='loginForm.$invalid', ng-click='login(user)') Log In
+    #create-account-link-container
       a(href='/#/signup')='Create an account'

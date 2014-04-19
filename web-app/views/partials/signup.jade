@@ -1,14 +1,8 @@
 #signup-page-containter
-  h1 Sign Up
   form(name='signupForm')
-    div
-      label Username:
-      input(type='text', name='username', required, ng-model="user.username")
-    div
-      label Password:
-      input(type='password', name='password', required, ng-model="user.password")
-    div
-      input(type='submit', value='Signup' ng-disabled='signupForm.$invalid', ng-click='signup(user)')
-    div {{errorMessage}}
-    div
+    input(type='text', placeholder='user name', name='username', required, ng-model="user.username")
+    input(type='password', placeholder='password', name='password', required, ng-model="user.password")
+    button.button-bright(type='submit', ng-disabled='signupForm.$invalid', ng-click='signup(user)') Sign Up
+    #error-message {{errorMessage}}
+    #login-link-container
       a(href='/#/login')='I already have an account'

@@ -1,0 +1,11 @@
+#login-link-container {
+  text-align: center;
+}
+
+@media only screen and (min-width: 35em) {  
+  #signup-page-containter {
+    max-width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

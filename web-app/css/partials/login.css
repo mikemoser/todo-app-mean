@@ -1,0 +1,15 @@
+#create-account-link-container {
+  text-align: center;
+}
+
+#error-message {
+  color: red;
+}
+
+@media only screen and (min-width: 35em) {  
+  #login-page-containter {
+    max-width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
