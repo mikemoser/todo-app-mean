@@ -16,6 +16,7 @@
   // EXPRESS SETUP
   // ----------------------------------------------------------------
   app.set('view engine', 'jade');
+  app.set('views', __dirname + '/web-app/views');
   app.use(express.cookieParser());
   app.use(express.session({ secret: 'toptal todo key' }));
   app.use(express.bodyParser());
@@ -31,9 +32,9 @@
   // ----------------------------------------------------------------
 
   // Static Routes
-  app.use('/img', express.static(__dirname + '/img'));
-  app.use('/css', express.static(__dirname + '/css'));
-  app.use('/js', express.static(__dirname + '/js'));
+  app.use('/img', express.static(__dirname + '/web-app/img'));
+  app.use('/css', express.static(__dirname + '/web-app/css'));
+  app.use('/js', express.static(__dirname + '/web-app/js'));
 
   // Public Routes
   app.get('/', function (req, res) {
