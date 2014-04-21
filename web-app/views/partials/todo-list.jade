@@ -14,9 +14,9 @@
       
   ul#todo-list
     li(ng-repeat='todo in todos')
-      .todo-list-item(ng-hide='editing', ng-click='editing=true').clearfix
+      .todo-list-item(ng-hide='editing').clearfix
         input.list-item-checkbox(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
-        .list-item-details-container.clearfix
+        .list-item-details-container(ng-click='editing=true').clearfix
           .list-item-description(class='done-{{todo.isComplete}}') {{todo.description}}
           .due-date(ng-show='todo.dueDate') {{todo.dueDate | date:'M/dd/yyyy' }}
         .list-item-delete.glyphicon.glyphicon-trash(ng-click='deleteTodo(todo)')
