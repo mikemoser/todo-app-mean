@@ -2,16 +2,6 @@
   color: red;
 }
 
-#header-title {
-  font-weight: bold;
-  font-size: 60px;
-  text-align: center;
-  font-style: italic;
-  text-shadow: 1px 1px 1px #FFF;
-  margin-bottom: 20px;
-  color: #333;
-}
-
 #register-link-container {
   margin-top: 10px;
   text-transform: uppercase;
@@ -23,9 +13,5 @@
     max-width: 400px;
     margin-right: auto;
     margin-left: auto;
-  }
-
-  #header-title {
-    font-size: 100px;
   }
 }

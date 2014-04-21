@@ -1,13 +1,15 @@
-#todo-list-page-containter
-  h1#header-text {{user.username}}'s Todos
-  a#logout-link(href='/#/login', ng-click='logout()') log out
-
-  form(ng-submit='addTodo()')
-    input(type='text', ng-model='newTodo.description', size='30')
-    input(type='submit', value='add')
-    
+#todo-list-containter
+  form#add-form(ng-submit='addTodo()').clearfix
+    button#add-button-desktop.button-bright(type='submit') add
+    #description-input-container
+      input#description-input(type='text', ng-model='newTodo.description', placeholder='What do you need to do?')
+    button#add-button-mobile.button-bright(type='submit') add
+      
   ul#todo-list
     li(ng-repeat='todo in todos')
-      input(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
-      span(class='done-{{todo.isComplete}}') {{todo.description}}
-      button(type='button', ng-click='deleteTodo(todo)') delete
+      #todo-list-item.clearfix
+        input(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
+        span#list-item-description(class='done-{{todo.isComplete}}') {{todo.description}}
+        button#list-item-delete(type='button', ng-click='deleteTodo(todo)') delete
+
+  a#logout-link(href='/#/login', ng-click='logout()') log out

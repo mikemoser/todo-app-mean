@@ -4,24 +4,10 @@
   text-align: center;
 }
 
-#header-title {
-  font-weight: bold;
-  font-size: 60px;
-  line-height: 60px;
-  text-align: center;
-  font-style: italic;
-  text-shadow: 1px 1px 1px #FFF;
-}
-
 @media only screen and (min-width: 35em) {  
   #signup-page-containter {
     max-width: 400px;
     margin-right: auto;
     margin-left: auto;
-  }
-
-  #header-title {
-    font-size: 100px;
-    line-height: 100px;
   }
 }

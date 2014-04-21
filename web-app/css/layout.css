@@ -1,3 +1,7 @@
+/* 
+  COMMON STYLES
+*/
+
 body {
   margin: 0;
   background: #EEE;
@@ -14,10 +18,6 @@ input[type='text'], input[type='password'] {
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box; /* Opera/IE 8+ */
   -webkit-appearance: none;
-}
-
-#header {
-  padding: 20px;
 }
 
 .clearfix:after {
@@ -72,16 +72,31 @@ input[type='text'], input[type='password'] {
   background-color: #AAA;
 }
 
+/* 
+  PAGE STYLES 
+*/
 
-#content-container-container {
-  padding: 10px;
+#header-title {
+  font-weight: bold;
+  font-size: 100px;
+  text-align: center;
+  font-style: italic;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+#content-container{
+  padding: 0 10px;
 }
 
 @media only screen and (min-width: 35em) {
-  #content-container-container {
-    padding: 20px;
+  #content-container {
+    padding: 0 20px;
     max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  #header-title {
+    padding: 20px 0;
   }
 }

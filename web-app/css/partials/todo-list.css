@@ -8,11 +8,44 @@
   text-decoration: line-through;
 }
 
-#header-text {
-  text-transform: uppercase;
-} 
+#add-button-mobile {
+  display: block;
+}
 
-h1 {
-  padding: 0;
-  margin: 0;
+#add-button-desktop {
+  display: none;
+}
+
+#todo-list-item {
+  padding: 10px 0px;
+}
+
+#list-item-description {
+  font-size: 20px;
+  margin-left: 10px;
+  color: #555;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+#list-item-delete {float: right;}
+
+@media only screen and (min-width: 35em) {
+  #add-button-desktop {
+    display: block;
+    float: right;
+    width: 150px;
+    margin-left: 5px;
+  }
+
+  #add-button-mobile {
+    display: none;
+  }
+
+  #description-input-container {
+    overflow: hidden;
+  }
+
+  #description-input {
+    height: 60px;
+  }
 }
