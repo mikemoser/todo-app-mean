@@ -4,7 +4,8 @@
   var schema = new mongoose.Schema({ 
     description: { type: String, required: true },
     isComplete: { type: Boolean, required: true, default: false },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } 
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    dueDate: {type: Date } 
   });
 
   module.exports = mongoose.model('Todo', schema);

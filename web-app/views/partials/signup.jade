@@ -1,8 +1,8 @@
 #signup-page-containter
   form(name='signupForm')
     #error-message {{errorMessage}}
-    input(type='text', placeholder='user name', name='username', required, ng-model="user.username")
-    input(type='password', placeholder='password', name='password', required, ng-model="user.password")
+    input#username-input(type='text', placeholder='user name', name='username', required, ng-model="user.username")
+    input#password-input(type='password', placeholder='password', name='password', required, ng-model="user.password")
     button.button-bright(type='submit', ng-click='signup(user)') Sign Up
     #login-link-container
       a(href='/#/login')='Log In'

@@ -6,14 +6,15 @@
     return new Promise(function (fulfill, reject) {
       var todo = new Models.Todo({ 
         description: data.description,
-        user: data.user
+        user: data.user,
+        dueDate: data.dueDate
       });
 
       todo.save(function (error) {
         if (error) 
           reject(error);
         else
-          fulfill(todo)
+          fulfill(todo);
       });
     });
   }
@@ -35,7 +36,7 @@
         if (error) 
           reject(error);
         else
-          fulfill()
+          fulfill();
       });
     });
   }
@@ -50,7 +51,7 @@
           if (error) 
             reject(error);
           else
-            fulfill(todo)
+            fulfill(todo);
         });
       });
     });

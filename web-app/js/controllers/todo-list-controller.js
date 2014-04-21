@@ -5,11 +5,12 @@ var todoController = todoApp.controller('todoController', ['$scope', 'authentica
   $scope.addTodo = function() {
     todoService.create({ 
       description: $scope.newTodo.description,
-      user: $scope.user._id
+      user: $scope.user._id,
+      dueDate: $scope.newTodo.dueDate
     })
     .then(function (todo) {
       $scope.todos.push(todo);  
-      $scope.newTodo.description = '';
+      $scope.newTodo = null;
     });
   };
 

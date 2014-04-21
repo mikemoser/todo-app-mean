@@ -8,44 +8,93 @@
   text-decoration: line-through;
 }
 
-#add-button-mobile {
-  display: block;
-}
-
-#add-button-desktop {
+#desktop-layout-container {
   display: none;
 }
 
-#todo-list-item {
-  padding: 10px 0px;
+#mobile-layout-container {
+  display: block;
 }
 
-#list-item-description {
-  font-size: 20px;
+#due-date-input,
+#description-input {
+  margin-bottom: 5px;
+}
+
+.todo-list-item {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.list-item-checkbox {
+  float: left;
+}
+
+.list-item-description-container {
+  float: left;
   margin-left: 10px;
+}
+
+.list-item-description {
+  font-size: 20px;
   color: #555;
+  text-shadow: 1px 1px 1px #FFF;
+  line-height: 20px;
+}
+
+.due-date {
+  float: right;
+  font-size: 12px;
+  color: #888;
+  margin-right: 10px;
   text-shadow: 1px 1px 1px #FFF;
 }
 
-#list-item-delete {float: right;}
+.list-item-delete {
+  float: right;
+  cursor: pointer;
+}
 
 @media only screen and (min-width: 35em) {
-  #add-button-desktop {
-    display: block;
+  #todo-list {
+    margin: 0 10px;
+  }
+
+  .todo-list-item:hover {
+    background-color: #DDD;
+  }
+
+  #right-hand-controls {
     float: right;
+  }
+
+  #description-input {
+    height: 60px;
+  }
+
+  #add-button {
+    float: left;
     width: 150px;
     margin-left: 5px;
   }
 
-  #add-button-mobile {
+  #due-date-input {
+    float: left;
+    width: 150px;
+    height: 60px;
+    margin-left: 5px;
+  }
+
+  #desktop-layout-container {
+    display: block;
+  }
+
+  #mobile-layout-container {
     display: none;
   }
 
   #description-input-container {
     overflow: hidden;
-  }
-
-  #description-input {
-    height: 60px;
   }
 }

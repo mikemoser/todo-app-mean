@@ -8,6 +8,11 @@
   text-align: center;
 }
 
+#password-input,
+#username-input {
+  margin-bottom: 5px;
+}
+
 @media only screen and (min-width: 35em) {  
   #login-page-containter {
     max-width: 400px;

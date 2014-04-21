@@ -2,6 +2,7 @@ doctype html
 html(ng-app='todoApp')
   head     
     meta(name='viewport', content='width=device-width, user-scalable=no') 
+    link(rel='stylesheet', href='/css/libs/bootstrap.min.css')
     link(rel='stylesheet', href='/css/layout.css')
     block head
     
@@ -9,5 +10,5 @@ html(ng-app='todoApp')
     #content-container
       #header-title='do'
       block content 
-
+ 
   block scripts

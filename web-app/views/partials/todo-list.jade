@@ -1,15 +1,25 @@
 #todo-list-containter
+  mixin right-hand-controls()
+    #right-hand-controls
+      input#due-date-input(type='text', readonly, datepicker-popup='M/d/yyyy', ng-model="newTodo.dueDate", show-weeks='false', placeholder='Due Date')
+      button#add-button.button-bright(type='submit') add
+      
   form#add-form(ng-submit='addTodo()').clearfix
-    button#add-button-desktop.button-bright(type='submit') add
+    #desktop-layout-container
+      mixin right-hand-controls
     #description-input-container
       input#description-input(type='text', ng-model='newTodo.description', placeholder='What do you need to do?')
-    button#add-button-mobile.button-bright(type='submit') add
+    #mobile-layout-container
+      mixin right-hand-controls
       
   ul#todo-list
     li(ng-repeat='todo in todos')
-      #todo-list-item.clearfix
-        input(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
-        span#list-item-description(class='done-{{todo.isComplete}}') {{todo.description}}
-        button#list-item-delete(type='button', ng-click='deleteTodo(todo)') delete
+      .todo-list-item.clearfix
+        input.list-item-checkbox(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
+        .list-item-description-container.clearfix
+          .list-item-description(class='done-{{todo.isComplete}}') {{todo.description}}
+        
+        .list-item-delete.glyphicon.glyphicon-remove(ng-click='deleteTodo(todo)')
+        .due-date(ng-show='todo.dueDate') {{todo.dueDate | date:'M/dd/yyyy' }}
 
   a#logout-link(href='/#/login', ng-click='logout()') log out

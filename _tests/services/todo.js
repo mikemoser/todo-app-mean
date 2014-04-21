@@ -19,7 +19,10 @@ describe('Todo Service', function () {
     });
 
     it('should create a new todo', function (done) {
-      Services.Todo.create(user._id, 'my test todo')
+      Services.Todo.create({
+        user: user._id, 
+        description: 'my test todo'
+      })
       .then(function (todo) {
         should.exist(todo);
         done();
@@ -29,6 +32,14 @@ describe('Todo Service', function () {
       })
     });
   });
+
+  describe('update', function () {
+    it.skip('should update the todo')
+  })
+
+  describe('delete', function () {
+    it.skip('should update the todo')
+  })
   
   describe('getTodosByUserId', function () {
     it.skip('should return all todos for a given user');

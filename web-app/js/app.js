@@ -1,4 +1,4 @@
-var todoApp = angular.module('todoApp', ['ngRoute']);
+var todoApp = angular.module('todoApp', ['ngRoute', 'ui.bootstrap']);
 
 todoApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider

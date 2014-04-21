@@ -4,6 +4,11 @@
   text-align: center;
 }
 
+#password-input,
+#username-input {
+  margin-bottom: 5px;
+}
+
 @media only screen and (min-width: 35em) {  
   #signup-page-containter {
     max-width: 400px;
