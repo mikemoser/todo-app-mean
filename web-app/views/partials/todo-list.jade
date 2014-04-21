@@ -14,12 +14,20 @@
       
   ul#todo-list
     li(ng-repeat='todo in todos')
-      .todo-list-item.clearfix
+      .todo-list-item(ng-hide='editing', ng-click='editing=true').clearfix
         input.list-item-checkbox(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
-        .list-item-description-container.clearfix
+        .list-item-details-container.clearfix
           .list-item-description(class='done-{{todo.isComplete}}') {{todo.description}}
-        
-        .list-item-delete.glyphicon.glyphicon-remove(ng-click='deleteTodo(todo)')
-        .due-date(ng-show='todo.dueDate') {{todo.dueDate | date:'M/dd/yyyy' }}
+          .due-date(ng-show='todo.dueDate') {{todo.dueDate | date:'M/dd/yyyy' }}
+        .list-item-delete.glyphicon.glyphicon-trash(ng-click='deleteTodo(todo)')
+      
+      .todo-list-item-edit(ng-show='editing', ng-submit='editing=false')
+        form#edit-form(ng-submit='updateTodo(todo)').clearfix
+          .clearfix
+            input.description-edit-input(type='text', ng-model='todo.description')
+          .clearfix
+            input.due-date-edit-input(type='text', readonly, datepicker-popup='M/d/yyyy', ng-model="todo.dueDate", show-weeks='false', placeholder='Due Date')
+          .clearfix
+            button.edit-submit-button.button-bright(type='submit', ng-click='edting=false') Done
 
   a#logout-link(href='/#/login', ng-click='logout()') log out

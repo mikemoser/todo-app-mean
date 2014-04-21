@@ -17,34 +17,46 @@
 }
 
 #due-date-input,
-#description-input {
+#description-input,
+.description-edit-input,
+.due-date-edit-input {
   margin-bottom: 5px;
 }
 
 .todo-list-item {
+  position: relative;
   padding: 10px;
   cursor: pointer;
   border-radius: 4px;
 }
 
-.list-item-checkbox {
-  float: left;
+.todo-list-item-edit {
+  padding: 10px;
 }
 
-.list-item-description-container {
-  float: left;
-  margin-left: 10px;
+.cancel-edit-link {
+  margin-left: 20px;
+  color: #555;
+}
+
+.list-item-checkbox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.list-item-details-container {
+  margin: 0 20px;
 }
 
 .list-item-description {
-  font-size: 20px;
+  font-size: 18px;
   color: #555;
   text-shadow: 1px 1px 1px #FFF;
-  line-height: 20px;
+  line-height: 18px;
 }
 
 .due-date {
-  float: right;
   font-size: 12px;
   color: #888;
   margin-right: 10px;
@@ -52,8 +64,10 @@
 }
 
 .list-item-delete {
-  float: right;
-  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
 }
 
 @media only screen and (min-width: 35em) {
@@ -96,5 +110,23 @@
 
   #description-input-container {
     overflow: hidden;
+  }
+
+  .due-date {
+    float: right;
+  }
+
+  .list-item-description {
+    float: left;
+  }
+
+  .edit-submit-button {
+    max-width: 100px;
+    float: right;
+  }
+
+  .due-date-edit-input {
+    max-width: 150px;
+    float: right;
   }
 }
