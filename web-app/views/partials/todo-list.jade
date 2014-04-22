@@ -26,8 +26,8 @@
           input.list-item-checkbox(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
           .list-item-details-container(ng-click='editing=true').clearfix
             .list-item-description(class='done-{{todo.isComplete}}') {{todo.description}}
-            .priority(ng-show='todo.priority') {{ todo.priority }}
-            .due-date(ng-show='todo.dueDate') {{todo.dueDate | date:'M/dd/yyyy' }}
+            .priority {{ todo.priority | priority }}
+            .due-date {{todo.dueDate | date:'M/dd/yyyy' }}
           .list-item-delete.glyphicon.glyphicon-trash(ng-click='deleteTodo(todo)')
         
         .todo-list-item-edit(ng-show='editing', ng-submit='editing=false')
