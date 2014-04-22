@@ -5,7 +5,8 @@
     description: { type: String, required: true },
     isComplete: { type: Boolean, required: true, default: false },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    dueDate: {type: Date } 
+    dueDate: { type: Date },
+    priority: { type: Number, default: 1 } 
   });
 
   module.exports = mongoose.model('Todo', schema);

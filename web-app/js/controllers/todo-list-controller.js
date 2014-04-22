@@ -29,6 +29,14 @@ var todoController = todoApp.controller('todoController', ['$scope', 'authentica
   $scope.logout = function () {
     authenticationService.logout();
   }
+
+  $scope.sortableOptions = {
+    disabled: false,
+    containment: 'parent'
+  };
+
+  $scope.predicate = 'dueDate';
+  
 }]);
 
 var loadData = function ($location, authenticationService, todoService) {

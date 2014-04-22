@@ -11,23 +11,37 @@
       input#description-input(type='text', ng-model='newTodo.description', placeholder='What do you need to do?')
     #mobile-layout-container
       mixin right-hand-controls
-      
-  ul#todo-list
-    li(ng-repeat='todo in todos')
-      .todo-list-item(ng-hide='editing').clearfix
-        input.list-item-checkbox(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
-        .list-item-details-container(ng-click='editing=true').clearfix
-          .list-item-description(class='done-{{todo.isComplete}}') {{todo.description}}
-          .due-date(ng-show='todo.dueDate') {{todo.dueDate | date:'M/dd/yyyy' }}
-        .list-item-delete.glyphicon.glyphicon-trash(ng-click='deleteTodo(todo)')
-      
-      .todo-list-item-edit(ng-show='editing', ng-submit='editing=false')
-        form#edit-form(ng-submit='updateTodo(todo)').clearfix
-          .clearfix
-            input.description-edit-input(type='text', ng-model='todo.description')
-          .clearfix
-            input.due-date-edit-input(type='text', readonly, datepicker-popup='M/d/yyyy', ng-model="todo.dueDate", show-weeks='false', placeholder='Due Date')
-          .clearfix
-            button.edit-submit-button.button-bright(type='submit', ng-click='edting=false') Done
+  
+  #todo-list-container
+    .clearfix
+      .sort-by-container
+        label.sort-select-lable Sort By
+        select.sort-select(ng-model='predicate')
+          option(value='priority') Priority
+          option(value='dueDate') Due Date
+
+    ul#todo-list(ng-model='todos')
+      li(ng-repeat='todo in todos | orderBy:predicate:reverse=false')
+        .todo-list-item(ng-hide='editing').clearfix
+          input.list-item-checkbox(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
+          .list-item-details-container(ng-click='editing=true').clearfix
+            .list-item-description(class='done-{{todo.isComplete}}') {{todo.description}}
+            .priority(ng-show='todo.priority') {{ todo.priority }}
+            .due-date(ng-show='todo.dueDate') {{todo.dueDate | date:'M/dd/yyyy' }}
+          .list-item-delete.glyphicon.glyphicon-trash(ng-click='deleteTodo(todo)')
+        
+        .todo-list-item-edit(ng-show='editing', ng-submit='editing=false')
+          form#edit-form(ng-submit='updateTodo(todo)').clearfix
+            .clearfix
+              input.description-edit-input(type='text', ng-model='todo.description')
+            .clearfix
+              input.due-date-edit-input(type='text', readonly, datepicker-popup='M/d/yyyy', ng-model="todo.dueDate", show-weeks='false', placeholder='Due Date')
+            .clearfix
+              select.priority-edit-select(ng-model='todo.priority')
+                option(value=1, selected='{{todo.priority == 1}}') High
+                option(value=2, selected='{{todo.priority == 2}}') Medium
+                option(value=3, selected='{{todo.priority == 3}}') Low
+            .clearfix
+              button.edit-submit-button.button-bright(type='submit', ng-click='edting=false') Done
 
   a#logout-link(href='/#/login', ng-click='logout()') log out

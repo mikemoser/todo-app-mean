@@ -46,6 +46,7 @@
       Models.Todo.findById(todoId, function (error, todo) {
         todo.description = data.description;
         todo.isComplete = data.isComplete; 
+        todo.priority = data.priority;
 
         todo.save(function (error, todo) {
           if (error) 

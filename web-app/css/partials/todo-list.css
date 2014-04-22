@@ -23,6 +23,15 @@
   margin-bottom: 5px;
 }
 
+.sort-by-container {
+  float: right;
+  margin-right: 10px;
+}
+
+.sort-select-lable {
+  margin-right: 10px;
+}
+
 .todo-list-item {
   position: relative;
   padding: 10px;
@@ -45,8 +54,13 @@
   left: 10px;
 }
 
+.priority-edit-select {
+  float: right;
+  margin-bottom: 5px;
+}
+
 .list-item-details-container {
-  margin: 0 20px;
+  margin: 0 20px 0 20px;
 }
 
 .list-item-description {
@@ -56,6 +70,7 @@
   line-height: 18px;
 }
 
+.priority,
 .due-date {
   font-size: 12px;
   color: #888;
@@ -70,8 +85,8 @@
 }
 
 @media only screen and (min-width: 35em) {
-  #todo-list {
-    margin: 0 10px;
+  #todo-list-container {
+    margin: 10px;
   }
 
   .todo-list-item:hover {
@@ -111,6 +126,7 @@
     overflow: hidden;
   }
 
+  .priority,
   .due-date {
     float: right;
   }
