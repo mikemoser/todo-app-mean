@@ -1,4 +1,4 @@
-var todoController = todoApp.controller('todoController', ['$scope', 'authenticationService', '$location', '$route', 'todoService', function ($scope, authenticationService, $location, $route, todoService) {
+var todoController = todoApp.controller('todoController', ['$scope', 'userService', '$location', '$route', 'todoService', '$window', function ($scope, userService, $location, $route, todoService, $window) {
   $scope.user = $route.current.locals.data.user;
   $scope.todos = $route.current.locals.data.todos;
  
@@ -27,30 +27,25 @@ var todoController = todoApp.controller('todoController', ['$scope', 'authentica
   };
 
   $scope.logout = function () {
-    authenticationService.logout();
+    $window.sessionStorage.token = null;
   }
-
-  $scope.sortableOptions = {
-    disabled: false,
-    containment: 'parent'
-  };
 
   $scope.predicate = 'dueDate';
   
 }]);
 
-var loadData = function ($location, authenticationService, todoService) {
+var loadData = function ($location, userService, todoService, $window) {
   var data = {};
 
-  return authenticationService.loggedin()
-  .then(function (user) {
-    // TODO: Determine best practice for Angular SPAs
-    // If the user is not logged in, then redirect them before displaying the view
-    if (!user) {
-      $location.url('/login');    
-      return;
-    }
-      
+  // Don't attempt to load this view if the user is not logged in
+  // HACK: Need to determine why this is not just null
+  if (!$window.sessionStorage.token || $window.sessionStorage.token == 'null') { 
+    $location.url('/login')
+    return;    
+  }
+
+  return userService.me()
+  .then(function (user) {  
     data.user = user;
     return todoService.getTodos(user._id);
   })

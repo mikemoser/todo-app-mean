@@ -1,10 +1,16 @@
-todoApp.controller('loginController', ['$scope', '$location', 'authenticationService', function ($scope, $location, authenticationService) {
+todoApp.controller('loginController', ['$scope', '$location', '$window', 'userService', function ($scope, $location, $window, userService) {
   $scope.login = function(user) {
-    authenticationService.login(user)
-    .then(function () {
-      $location.url('/');
+    userService.login(user)
+    .then(function (result) {
+      if (result.error) {
+        $scope.errorMessage = result.error;
+        return;   
+      }
+
+      $window.sessionStorage.token = result.token;
+      $location.url('/');  
     }, function (error) {
-      $scope.errorMessage = 'Invalid login.';
+      $scope.errorMessage = 'Error on login.';
     })
   }  
 }]);

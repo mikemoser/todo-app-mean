@@ -19,8 +19,7 @@ describe('Todo Service', function () {
     });
 
     it('should create a new todo', function (done) {
-      Services.Todo.create({
-        user: user._id, 
+      Services.Todo.create(user._id, { 
         description: 'my test todo'
       })
       .then(function (todo) {

@@ -2,14 +2,14 @@ todoApp.factory('todoService', function ($http) {
   return {
     getTodos: function () {
       return $http.get('/todos')
-      .then(function (results) {
-        return results.data;
+      .then(function (result) {
+        return result.data;
       });
     },
     create: function (todo) {
       return $http.post('/todos', todo)
-      .then(function (results) {
-        return results.data;
+      .then(function (result) {
+        return result.data;
       });
     },
     delete: function (todo) {
@@ -20,8 +20,8 @@ todoApp.factory('todoService', function ($http) {
     },
     update: function (todo) {
       return $http.put('/todos/' + todo._id, todo)
-      .then(function (todo) {
-        return todo;
+      .then(function (result) {
+        return result.data;
       });
     }
   }

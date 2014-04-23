@@ -3,7 +3,8 @@
     #right-hand-controls
       input#due-date-input(type='text', readonly, datepicker-popup='M/d/yyyy', ng-model="newTodo.dueDate", show-weeks='false', placeholder='Due Date')
       button#add-button.button-bright(type='submit') add
-      
+  
+  //- New todo
   form#add-form(ng-submit='addTodo()').clearfix
     #desktop-layout-container
       mixin right-hand-controls
@@ -14,6 +15,7 @@
   
   #todo-list-container
     .clearfix
+      //- Sort by
       .sort-by-container
         label.sort-select-lable Sort By
         select.sort-select(ng-model='predicate')
@@ -21,6 +23,7 @@
           option(value='dueDate') Due Date
 
     ul#todo-list(ng-model='todos')
+      //- Read only view of the todo item
       li(ng-repeat='todo in todos | orderBy:predicate:reverse=false')
         .todo-list-item(ng-hide='editing').clearfix
           input.list-item-checkbox(type='checkbox', ng-model='todo.isComplete', ng-change='updateTodo(todo)')
@@ -30,14 +33,15 @@
             .due-date {{todo.dueDate | date:'M/dd/yyyy' }}
           .list-item-delete.glyphicon.glyphicon-trash(ng-click='deleteTodo(todo)')
         
+        //- Edit view of the todo item
         .todo-list-item-edit(ng-show='editing', ng-submit='editing=false')
           form#edit-form(ng-submit='updateTodo(todo)').clearfix
             .clearfix
               input.description-edit-input(type='text', ng-model='todo.description')
             .clearfix
-              input.due-date-edit-input(type='text', readonly, datepicker-popup='M/d/yyyy', ng-model="todo.dueDate", show-weeks='false', placeholder='Due Date')
+              input.due-date-edit-input(type='text', readonly, datepicker-popup='M/d/yyyy', ng-model="todo.dueDate", show-weeks='false', placeholder='Due Date', date)
             .clearfix
-              select.priority-edit-select(ng-model='todo.priority')
+              select.priority-edit-select(ng-model='todo.priority', integer)
                 option(value=1, selected='{{todo.priority == 1}}') High
                 option(value=2, selected='{{todo.priority == 2}}') Medium
                 option(value=3, selected='{{todo.priority == 3}}') Low

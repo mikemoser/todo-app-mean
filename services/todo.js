@@ -3,62 +3,56 @@
   var Models = require('../models')
 
   function create(data) {
-    return new Promise(function (fulfill, reject) {
-      var todo = new Models.Todo({ 
-        description: data.description,
-        user: data.user,
-        dueDate: data.dueDate
-      });
+    var todo = new Models.Todo({ 
+      description: data.description,
+      user: data.user,
+      dueDate: data.dueDate
+    });
 
-      todo.save(function (error) {
-        if (error) 
-          reject(error);
-        else
-          fulfill(todo);
-      });
+    return Promise.denodeify(todo.save.bind(todo))()
+    .then(function (todo) {
+      return todo;
+    });
+  }
+
+  function get(todoId) {
+    return Promise.denodeify(Models.Todo.findById.bind(Models.Todo))(todoId)
+    .then(function (todo) {
+      return todo;
     });
   }
 
   function getTodosByUserId(userId) {
-    return new Promise(function (fulfill, reject) {
-      Models.Todo.find({ user: userId }, function (error, results) {
-        if (error) 
-          reject(error);
-        else
-          fulfill(results);
-      });
-    });  
-  }
-
-  function remove(todoId) {
-    return new Promise(function (fulfill, reject) {
-      Models.Todo.remove({ _id: todoId}, function (error) {
-        if (error) 
-          reject(error);
-        else
-          fulfill();
-      });
+    return Promise.denodeify(Models.Todo.find.bind(Models.Todo))({ user: userId })
+    .then(function (todos) {
+      return todos;
     });
   }
 
-  function update(todoId, data) {
-    return new Promise(function (fulfill, reject) {
-      Models.Todo.findById(todoId, function (error, todo) {
-        todo.description = data.description;
-        todo.isComplete = data.isComplete; 
-        todo.priority = data.priority;
+  function remove(todoId) {
+    return Promise.denodeify(Models.Todo.remove.bind(Models.Todo))({ _id: todoId })
+    .then(function () {
+      return;
+    })
+  }
 
-        todo.save(function (error, todo) {
-          if (error) 
-            reject(error);
-          else
-            fulfill(todo);
-        });
-      });
+  function update(todoId, data) {
+    return get(todoId)
+    .then(function (todo) {
+      todo.description = data.description;
+      todo.isComplete = data.isComplete; 
+      todo.dueDate = data.dueDate; 
+      todo.priority = data.priority;
+
+      return Promise.denodeify(todo.save.bind(todo))()
+    })
+    .then(function (todo) {
+      return todo;
     });
   }
 
   module.exports = {
+    get: get,
     create: create,
     getTodosByUserId: getTodosByUserId,
     remove: remove,

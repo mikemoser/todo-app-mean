@@ -1,6 +1,6 @@
 angular.module('priorityFilters', []).filter('priority',  function () {
   return function (input) {
-    switch (parseInt(input)) {
+    switch (input) {
       case 1:
         return 'High';
         break;
