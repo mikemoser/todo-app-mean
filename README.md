@@ -25,4 +25,4 @@ This is a MEAN stack.  MongoDb, Express, Angular & Node.js.  To run this project
 Then...
 - Run `mongod` command to start database
 - Run `node web.js` command from root of project directory
-- Go to http://localhost:3000
+- Go to http://localhost:8080
